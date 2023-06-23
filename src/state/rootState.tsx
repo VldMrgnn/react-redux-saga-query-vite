@@ -22,7 +22,7 @@ const persistConfig = {
   key: "root",
   storage,
   stateReconciler: hardSet,
-  blacklist: ["counter", "posts"],
+  blacklist: ["counter"],
 };
 const rootReducer_super = resetReducer(rootReducer, persistConfig);
 const rootReducer_super_super = persistReducer<RootState>(

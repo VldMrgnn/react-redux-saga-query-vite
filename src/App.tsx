@@ -31,9 +31,10 @@ function App() {
             <img src={sagaLogo} className="logo saga" alt="Redux Saga logo" />
           </a>
         </div>
-        <h1>Vite + React + Saga Query</h1>
+        <h1>Vite + React + Redux-Saga</h1>
+        <h2>with saga-query</h2>
         <p className="read-the-docs">
-          Click on the Vite and React logos to learn more
+          Click on the Vite, React or Redux-Saga logos to learn more
         </p>
       </div>
       <div id="local-pane">
