@@ -3,7 +3,6 @@ import { createTable } from "robodux";
 import { createSelector } from "reselect";
 import { api, thunks } from "@app/state/apis";
 import { service } from "@app/service";
-console.log('service', service)
 
 import type { ApiCtx, Next } from "saga-query";
 import type { RootState } from "@app/state/rootState";
