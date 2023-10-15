@@ -17,7 +17,7 @@ function* startUpLog() {
     }`
   );
   //do not change, see prebuild script//
-  yield console.log('build id: 2/2023-06-23 23:40:38')
+  yield console.log('build id: 3/2023-06-24 00:21:22')
 }
 
 export default function* rootSaga() {

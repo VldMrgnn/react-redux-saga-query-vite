@@ -1,14 +1,16 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import sagaLogo from "./assets/Redux-Saga-Logo.png";
-import viteLogo from "/vite.svg";
-import { useAppDispatch, useAppSelector } from "@app/state";
-import { selectCounter, counterOp } from "@app/state";
-import { removePosts, loadPosts, postList } from "@app/state";
+import viteLogo from '/vite.svg';
+import { useMemo, useState } from 'react';
+import { useLoader } from 'saga-query/react';
+
+import {
+    counterOp, loadPosts, postList, removePosts, selectCounter, useAppDispatch, useAppSelector
+} from '@app/state';
+
+import './App.css';
+import reactLogo from './assets/react.svg';
+import sagaLogo from './assets/Redux-Saga-Logo.png';
 
 import type { TPost } from "@app/types";
-
-import "./App.css";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -17,6 +19,17 @@ function App() {
 
   const counter = useAppSelector(selectCounter);
   const posts:TPost[] = useAppSelector(postList) ;
+  const loader = useLoader(loadPosts);
+  const buttonLabel = useMemo(() => {
+    switch (loader?.status) {
+      case "loading":
+        return "≋";
+      case "success":
+        return '⟳';
+      default:
+        return "⩗";
+    }
+  }, [loader?.status]);
   return (
     <div id={"containerMain"}>
       <div id={"containerHeader"}>
@@ -82,7 +95,8 @@ function App() {
             -
           </button>
           <button onClick={() => dispatch(loadPosts({ id: postsToFetch }))}>
-            Fetch post id:{postsToFetch}
+            Fetch post id:{postsToFetch}&nbsp;&nbsp;
+            <span style={{color:'#DA5359'}}>{buttonLabel}</span>
           </button>
           <button
             onClick={() =>

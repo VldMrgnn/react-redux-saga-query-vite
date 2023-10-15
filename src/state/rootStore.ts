@@ -1,7 +1,7 @@
 import { prepareStore } from "saga-query";
 import { createReducerMap } from "robodux";
 import { api, thunks } from "./apis";
-import { counterRepo, postsRepo } from "./units";
+import { counterRepo, postsRepo } from "./slices";
 import rootSaga from "./rootSaga";
 
 export const reducers = createReducerMap(

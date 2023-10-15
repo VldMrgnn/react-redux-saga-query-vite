@@ -2,7 +2,7 @@ import { put, select } from "saga-query";
 import { createTable } from "robodux";
 import { createSelector } from "reselect";
 import { api, thunks } from "@app/state/apis";
-import { service } from "@app/service";
+// import { service } from "@app/service";
 
 import type { ApiCtx, Next } from "saga-query";
 import type { RootState } from "@app/state/rootState";
@@ -31,6 +31,7 @@ export const loadPosts = api.get<{ id: number }>(
     ctx.request = ctx.req({
       url: `/posts/${ctx.payload.id}`,
     });
+    
     yield next();
     const { data, ok } = yield ctx.json;
     if (!ok || !data) {
@@ -45,10 +46,10 @@ export const loadPosts = api.get<{ id: number }>(
   }
 );
 
-export const removePosts = thunks.create("removePosts", 
-function* (_ctx:ThunkCtx, next:Next) {
-  
-  const ids = yield* select(postIds);
-  yield* put(postsRepo.actions.remove(ids));
-  yield next();
-});
+export const removePosts = thunks.create("removePosts",
+  function* (_ctx: ThunkCtx, next: Next) {
+
+    const ids = yield* select(postIds);
+    yield* put(postsRepo.actions.remove(ids));
+    yield next();
+  });

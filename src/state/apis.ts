@@ -5,6 +5,7 @@ import {
   createPipe,
   errorHandler,
   dispatchActions,
+  loadingMonitor,
   ApiCtx,
   Next,
 } from "saga-query";
@@ -33,7 +34,9 @@ const errMessageMiddleware = function* (ctx: ApiCtx, next: Next) {
 };
 
 export const api = createApi();
+api.use(errorHandler);
 api.use(requestMonitor());
+api.use(loadingMonitor())
 api.use(api.routes());
 api.use(errMessageMiddleware);
 api.use(fetcher({ baseUrl: service }));
